@@ -3,13 +3,12 @@
 
 #ifdef __linux__
 #define DLL_EXPORT
+#define DLL_CALL
 #else
 #define DLL_EXPORT extern "C" __declspec(dllexport)
+#define DLL_CALL __stdcall
 #endif
 
-#define DLL_CALL __stdcall
-
-// DLL_EXPORT double DLL_CALL Add(double a, double b);
-DLL_EXPORT double Add(double a, double b);
+DLL_EXPORT double DLL_CALL Add(double a, double b);
 
 #endif //TEST_COMMON_H
