@@ -1,6 +1,6 @@
 package main
 
-// #cgo LDFLAGS: -L. -lTestLibrary
+// #cgo LDFLAGS: -L./build -lTestLibrary
 // double Add(double a, double b);
 import "C"
 
