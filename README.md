@@ -6,6 +6,23 @@ GoからC++のライブラリを呼び出す機構を作ってみる。
 - 静的ライブラリ
 - 動的ライブラリ
 
+## linuxから呼び出し
+
+```shell
+# linux向けビルド用コンテナの作成
+$ make docker-build-builder
+
+# linux向けライブラリのビルド
+$ make docker-build-lib
+
+# linux向け実行環境のビルド
+$ make docker-build-executor
+
+# linux向けライブラリを含めて実行
+$ make docker-executor
+> go run main.go
+```
+
 ## 参考
 
 - [ライブラリのリンク方法をきっちり区別しよう -Qiita](https://qiita.com/argama147/items/2f636a2f4fd76f6ce130)

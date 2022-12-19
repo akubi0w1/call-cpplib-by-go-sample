@@ -37,3 +37,25 @@ $(CMAKE):
 	cd $(TOOLCHAIN_DIR)/tmp-cmake && curl -Lo cmake.tar.gz $(CMAKE_PACKAGE) && tar -zxvf cmake.tar.gz
 	mv $(TOOLCHAIN_DIR)/tmp-cmake/$(CMAKE_ARCHIVE) $(TOOLCHAIN_BIN)/cmake
 	rm -rf $(TOOLCHAIN_DIR)/tmp-cmake
+
+cmake-help:
+	$(CMAKE) --build
+
+###########################################
+# linux container build
+
+# build builder
+docker-build-builder:
+	docker build -t cmake-builder -f docker/build/Dockerfile .
+
+# build library
+docker-build-lib:
+	docker run -it -v $(CURRENT_PATH):/mount -w /mount cmake-builder cmake -S /mount -B /mount/build/ -G"Unix Makefiles"
+	docker run -it -v $(CURRENT_PATH):/mount -w /mount cmake-builder cmake --build /mount/build/
+
+# execute
+docker-build-executor:
+	docker build -t cmake-executor -f docker/executor/Dockerfile .
+
+docker-executor:
+	docker run -it -v $(CURRENT_PATH):/mount -w /mount cmake-executor /bin/bash
