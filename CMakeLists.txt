@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.23)
 project(test_library)
 
 set(CMAKE_CXX_STANDARD 14)
+if (UNIX)
+  set(ARCH_TYPE x86)
+endif (UNIX)
 
 add_compile_options(-fms-extensions)
 # add_compile_options(-fPIC) # あってもよし
