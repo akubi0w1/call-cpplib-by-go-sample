@@ -2,7 +2,7 @@
 #define TEST_COMMON_H
 
 #ifdef __linux__
-#define DLL_EXPORT
+#define DLL_EXPORT extern "C"
 #define DLL_CALL
 #else
 #define DLL_EXPORT extern "C" __declspec(dllexport)
